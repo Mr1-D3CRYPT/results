@@ -63,7 +63,7 @@
 <body>
 
     <div class="disp">
-        <h3>Mark Entry</h3>
+        <h3>Mark Update</h3>
         <form method="POST" action="">
             <label for="userid">Registration number : </label>
             <input type="number" name="userid" id="userid" required> 
@@ -106,7 +106,8 @@
 
                         $userid = $_SESSION['userid'];
                         $uname = $_SESSION['uname'];
-                        $dob = $_SESSION['dob'];
+                        $db = $_SESSION['dob'];
+                        $dob = date("Y-m-d", strtotime($db) );
 
                         $math = $_SESSION['math'];
                         $english = $_SESSION['english'];
@@ -143,16 +144,16 @@
                         $ins = mysqli_query($con,"select * from students where userid='$userid'");
 
                         if($ins){
-                            $en = mysqli_query($con,"update students set name='$uname' dob='$dob', math='$math', english='$english', biology='$biology', chemistry='$chemistry', physics='$physics', total='$total' ,percentage='$percentage', grade='$grade' where userid = '$userid';");
+                            $en = mysqli_query($con,"update students set name='$uname', dob='$dob', math='$math', english='$english', biology='$biology', chemistry='$chemistry', physics='$physics', total='$total' ,percentage='$percentage', grade='$grade' where userid = '$userid';");
                             if($en){
-                                echo"<p class='success'>Edit successfull!!</p>";
+                                echo"<p class='success'>Update successfull!!</p>";
                             }
                             else{
-                                echo "Edit failed!!";
+                                echo "Updation failed!!";
                             }
                         }
                         else{
-                           echo"<p class='error'>Edit failed</p>";
+                           echo"<p class='error'>Updation failed</p>";
                         }
                     }
                                             
